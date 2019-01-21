@@ -1,16 +1,25 @@
-<p> This is the homepage for the note taking app! </p>
+<p> Element's Workshop Registration </p>
 
-<a href="/notes/all"> All Notes </a>
-<br>
-<a href="/notes/5bf6df46be880012d7f4952f"> Note 1 </a>
+<a href="/notes/all"> Current Registrations </a>
 
-
-<h3> Register for Workshop </h3>
-
-<p> Workshop 1 - <a href="#"> Register for this workshop 1 </a></p> 
+<p> Register for this Workshop 1 </p> 
 <form action = "/notes" method = "post">
-	<input type = "text" name = "contents">
+  <label> Your Name: </label>
+	<input type = "text" name = "participantName">
+  <label> Workshop Name: </label>
+	<input type = "text" name = "workShopName" value = "Workshop 1">
 	<button type = "submit"> Submit </button>
-<p> Workshop 2 - <a href="#"> Register for this workshop 2 </a></p>
-<p> Workshop 3 - <a href="#"> Register for this workshop 3 </a></p>
-
+<p> Register for this workshop 2 </p>
+  <form action = "/notes" method = "post">
+  <label> Your Name: </label>
+	<input type = "text" name = "participantName">
+  <label> Workshop Name: </label>
+	<input type = "text" name = "workShopName" value = "Workshop 2">
+	<button type = "submit"> Submit </button>
+<p> Register for this workshop 3 </p>
+    <form action = "/notes" method = "post">
+  <label> Your Name: </label>
+	<input type = "text" name = "participantName">
+  <label> Workshop Name: </label>
+	<input type = "text" name = "workShopName" value = "Workshop 3">
+	<button type = "submit"> Submit </button>

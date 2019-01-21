@@ -26,7 +26,7 @@ module.exports = function(app, db) {
 				for(var i = 0; i < result.length; i++) {
     				var obj = result[i];
     				console.log(obj);
-    				test.push(obj.contents);
+    				test.push(obj.participantName + ": "  + obj.workShopName);
 
 				}
 				res.send(test);
@@ -89,7 +89,7 @@ module.exports = function(app, db) {
 	//Create note
 	app.post('/notes', (req,res) => {
 
-		const note = {  contents: req.body.contents,title: req.body.title };
+		const note = {  participantName: req.body.participantName,workShopName: req.body.workShopName };
 		db.collection('notes').insert(note, (err, result) => {
 			if(err) {
 				res.send({'error': 'An error has occurred'});
