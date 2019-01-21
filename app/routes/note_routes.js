@@ -16,13 +16,24 @@ module.exports = function(app, db) {
 	app.get('/notes/all', (req, res) => {
 
 		var coll = db.collection("notes");
+		var test = [];
+
 		coll.find({}).toArray(function (err, result) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				console.log(result);
-				res.send(JSON.stringify(result, null, "\n"));
-				//res.send(result);
+
+				for(var i = 0; i < result.length; i++) {
+    				var obj = result[i];
+    				console.log(obj);
+    				test.push(obj.contents);
+
+				}
+				res.send(test);
+				console.log(test);
+				
+
+
 			}
 		});
 	});
@@ -38,7 +49,7 @@ module.exports = function(app, db) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				res.send(item);
+				res.send("Note is " + item.contents);
 			}
 		});
 	});
