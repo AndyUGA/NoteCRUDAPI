@@ -13,7 +13,7 @@ module.exports = function(app, db) {
 
 
 	//Get all notes
-	app.get('/notes/all', (req, res) => {
+	app.get('/registration/all', (req, res) => {
 
 		var coll = db.collection("notes");
 		var test = [];
@@ -87,14 +87,14 @@ module.exports = function(app, db) {
 
 
 	//Create note
-	app.post('/notes', (req,res) => {
+	app.post('/register/workshop', (req,res) => {
 
 		const note = {  participantName: req.body.participantName,workShopName: req.body.workShopName };
 		db.collection('notes').insert(note, (err, result) => {
 			if(err) {
 				res.send({'error': 'An error has occurred'});
 			} else {
-				res.redirect('/notes/all');
+				res.redirect('/registration/all');
 			}
 		});
 
