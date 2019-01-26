@@ -5,15 +5,9 @@ module.exports = function(app, db) {
 
 
 	app.get('/', (req, res) => {
-		var indexLoc = __dirname + "/index.html";
-		console.log(indexLoc);
-		res.sendFile(indexLoc);
+		//var indexLoc = __dirname + "/index.html";
+		//res.sendFile(indexLoc);
 
-	});
-
-
-	//Get all notes
-	app.get('/registration/all', (req, res) => {
 
 		var coll = db.collection("notes");
 		var test = [];
@@ -25,18 +19,25 @@ module.exports = function(app, db) {
 
 				for(var i = 0; i < result.length; i++) {
     				var obj = result[i];
-    				console.log(obj);
-    				test.push(obj.participantName + ": "  + obj.workShopName);
+    				console.log('obj is ' + obj);
 
+    				test.push(obj.title + ": "  + obj.content);
 				}
-				res.send(test);
-				console.log(test);
-				
-
+				res.render('result', {test: test});
+				//res.send(test);
+				//console.log(test);
 
 			}
 		});
+
+
+
+
+
 	});
+
+
+
 
 
 	//Get Note based on id
@@ -86,6 +87,9 @@ module.exports = function(app, db) {
 
 
 
+
+
+
 	//Create note
 	app.post('/register/workshop', (req,res) => {
 
@@ -98,9 +102,26 @@ module.exports = function(app, db) {
 			}
 		});
 
+	});
+
+
+
+	app.post('/note/create', (req,res) => {
+
+		const note = {  title: req.body.title, content: req.body.content };
+		db.collection('notes').insert(note, (err, result) => {
+			if(err) {
+				res.send({'error': 'An error has occurred'});
+			} else {
+				res.redirect('/');
+			}
+		});
+
 
 
 	});
+
+
 
 	
 

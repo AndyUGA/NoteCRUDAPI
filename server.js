@@ -11,6 +11,8 @@ const port = 8000;
 
 app.use(bodyParser.urlencoded({ extended: true}))
 
+app.set('view engine', 'ejs');
+
 
 
 MongoClient.connect(db.url, function(err, database){
