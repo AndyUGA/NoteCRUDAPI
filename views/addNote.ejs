@@ -4,7 +4,7 @@
 <head>
    <title>Note Taking App</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheet.css">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -14,31 +14,8 @@
 <body>
    
  
-<center><h3> Here are your notes </h3>
+<center><h3> Add note here </h3>
 
-
-
-
-<div class="table-responsive"> 
-<table class="table">
-	
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Content</th>
-    </tr>
-  </thead>
-  <% for(var i=0; i < currentNotes.length; i++) { %>
-  <tbody>
-    <tr>
-      <td><%= currentNotes[i].title %></td>
-      <td><%= currentNotes[i].content %></td>
-    </tr>
-    <% } %>
-  </tbody>
-</table>
-
-</div>
 
 
 

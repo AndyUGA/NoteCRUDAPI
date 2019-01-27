@@ -15,10 +15,27 @@ module.exports = function(app, db) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				res.render('result', {currentNotes: result});
+				res.render('index', {currentNotes: result});
 			}
 		});
 	});
+
+	//Display page to add note to database
+	app.get('/addNote', (req, res) => {
+	
+		var collection = db.collection("notes");
+		var currentNotes = [];
+
+		collection.find({}).toArray(function (err, result) {
+			if(err) {
+				res.send({ 'error': ' An error has occurred'});
+			} else {
+
+				res.render('addNote');
+			}
+		});
+	});
+
 
 	//Displays all notes in database
 	app.get('/notes', (req, res) => {
