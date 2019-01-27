@@ -16,13 +16,29 @@
  
 <center><h3> Here are your notes </h3>
 
-<% for(var i=0; i<currentNotes.length; i++) {%>
-   <%= currentNotes[i].title %>
-   <%= currentNotes[i].content %>
-<% } %>
 
 
 
+<div class="table-responsive"> 
+<table class="table">
+	
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+    </tr>
+  </thead>
+  <% for(var i=0; i < currentNotes.length; i++) { %>
+  <tbody>
+    <tr>
+      <td><%= currentNotes[i].title %></td>
+      <td><%= currentNotes[i].content %></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
+
+</div>
 
 
 
