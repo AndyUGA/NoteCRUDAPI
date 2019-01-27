@@ -16,7 +16,13 @@
  
 <center><h3> Here are your notes </h3>
 
-<%= currentNotes %> 
+<% for(var i=0; i<currentNotes.length; i++) {%>
+   <%= currentNotes[i].title %>
+   <%= currentNotes[i].content %>
+<% } %>
+
+
+
 
 
 

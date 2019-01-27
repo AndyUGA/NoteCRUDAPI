@@ -15,35 +15,20 @@ module.exports = function(app, db) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				for(var i = 0; i < result.length; i++) {
-    				var notesObject = result[i];
-
-
-    				currentNotes.push(notesObject.title + ": "  + notesObject.content);
-				}
-				res.render('result', {currentNotes: currentNotes});
-				
-
+				res.render('result', {currentNotes: result});
 			}
 		});
 	});
 
 	//Displays all notes in database
 	app.get('/notes', (req, res) => {
-		//var indexLoc = __dirname + "/index.html";
-		//res.sendFile(indexLoc);
 
-
-		var coll = db.collection("notes");
-		var test = [];
-
-		coll.find({}).toArray(function (err, result) {
+		var collection = db.collection("notes");
+		collection.find({}).toArray(function (err, result) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-
 				res.send(result);
-				//console.log(test);
 
 			}
 		});
