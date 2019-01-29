@@ -4,21 +4,26 @@ var ObjectID = require('mongodb').ObjectID
 module.exports = function(app, db) {
 
 
-	//Displays home page
-	app.get('/', (req, res) => {
-	
-		var collection = db.collection("notes");
-		var currentNotes = [];
 
-		collection.find({}).toArray(function (err, result) {
+	//Delete Note based on id
+	app.delete('/notes/delete/:id', (req, res) => {
+		const id = req.params.id;
+
+
+		const details = {'_id': ObjectID(id) };
+
+		db.collection('notes').remove(details, (err, item) => {
 			if(err) {
+				console.log("Error is " + err);
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-
-				res.render('index', {currentNotes: result});
+				res.redirect('/');
 			}
 		});
 	});
+
+
+	
 
 	//Display page to add note to database
 	app.get('/addNote', (req, res) => {
@@ -51,6 +56,37 @@ module.exports = function(app, db) {
 		});
 	});
 
+	//Displays home page
+	app.get('/', (req, res) => {
+	
+		var collection = db.collection("notes");
+		var currentNotes = [];
+		var notesID = [];
+
+
+
+
+		collection.find({}).toArray(function (err, result) {
+
+
+			for(var i = 0; i < result.length; i++)
+			{
+				notesID.push(ObjectID(result[i]._id));
+			}
+
+			if(err) {
+				res.send({ 'error': ' An error has occurred'});
+			} else {
+
+				res.render('index', {currentNotes: result, notesID: notesID});
+			}
+			console.log('notesID is ' + notesID);
+
+		});
+
+		
+	});
+
 	//Create note
 	app.post('/note/create', (req,res) => {
 
@@ -81,20 +117,7 @@ module.exports = function(app, db) {
 		});
 	});
 
-	//Delete Note based on id
-	app.delete('/notes/delete/:id', (req, res) => {
-		const id = req.params.id;
-
-
-		const details = {'_id': new ObjectID(id) };
-		db.collection('notes').remove(details, (err, item) => {
-			if(err) {
-				res.send({ 'error': ' An error has occurred'});
-			} else {
-				res.send('Note ' + id + ' has been deleted!');
-			}
-		});
-	});
+	
 
 	//Update existing note based on id
 	app.put('/notes/:id', (req, res) => {

@@ -1,14 +1,18 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
-const db = require('./config/db')
+const db = require('./config/db');
+const methodOverride = require('method-override');
 
+const ObjectID = require('mongodb').ObjectID
 
 
 const app = express();
 
 const port = 8000;
 
+
+app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(express.static(__dirname + '/public'));
 

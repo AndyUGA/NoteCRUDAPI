@@ -26,15 +26,34 @@
     <tr>
       <th scope="col">Title</th>
       <th scope="col">Content</th>
+      <th scope="col">Delete Note</th>
     </tr>
   </thead>
+
   <% for(var i=0; i < currentNotes.length; i++) { %>
   <tbody>
     <tr>
       <td><%= currentNotes[i].title %></td>
       <td><%= currentNotes[i].content %></td>
+      <td>
+      	<!--
+      	<button> 
+      		<a href="/notes/delete/<%= currentNotes[i]._id %> "> 
+      			Delete
+      		</a>
+      	</button>
+      -->
+      <form method="POST" action="/notes/delete/<%= currentNotes[i]._id %>?_method=DELETE">
+
+      	<input type="hidden" name="_method" value="DELETE"/>
+      	<button type="submit">
+      			Delete resource
+      	</button>
+      </form>
+  </td>
     </tr>
     <% } %>
+
   </tbody>
 </table>
 
