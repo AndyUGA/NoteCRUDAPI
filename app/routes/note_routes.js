@@ -80,7 +80,7 @@ module.exports = function(app, db) {
 
 				res.render('index', {currentNotes: result, notesID: notesID});
 			}
-			console.log('notesID is ' + notesID);
+
 
 		});
 
