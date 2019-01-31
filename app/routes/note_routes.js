@@ -61,7 +61,7 @@ module.exports = function(app, db) {
 	
 		var collection = db.collection("notes");
 		var currentNotes = [];
-		var notesID = [];
+
 
 
 
@@ -70,16 +70,13 @@ module.exports = function(app, db) {
 			console.log("result is ");
 			console.log(result);
 
-			for(var i = 0; i < result.length; i++)
-			{
-				notesID.push(ObjectID(result[i]._id));
-			}
+			
 
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				res.render('index', {currentNotes: result, notesID: notesID});
+				res.render('index', {currentNotes: result});
 			}
 
 
@@ -140,7 +137,7 @@ module.exports = function(app, db) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				res.redirect('index');
+				res.redirect('/');
 			}
 		});
 	});
