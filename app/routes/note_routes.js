@@ -67,7 +67,8 @@ module.exports = function(app, db) {
 
 
 		collection.find({}).toArray(function (err, result) {
-
+			console.log("result is ");
+			console.log(result);
 
 			for(var i = 0; i < result.length; i++)
 			{
@@ -118,18 +119,28 @@ module.exports = function(app, db) {
 	});
 
 	
+	//Display modify form 
+	app.get('/modifyForm/:id', (req, res) => {
+
+		const id = req.params.id;
+		//const details = {'_id': new ObjectID(id) };
+
+
+		res.render('modifyNote', {id : id});
+	});
+
 
 	//Update existing note based on id
 	app.put('/notes/:id', (req, res) => {
 		const id = req.params.id;
-		const note = {  contents: req.body.contents,title: req.body.title };
+		const note = {  content: req.body.content,title: req.body.title };
 
 		const details = {'_id': new ObjectID(id) };
 		db.collection('notes').update(details, note, (err, item) => {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				res.send(item);
+				res.redirect('index');
 			}
 		});
 	});

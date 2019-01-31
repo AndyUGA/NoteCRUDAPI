@@ -27,6 +27,7 @@
       <th scope="col">Title</th>
       <th scope="col">Content</th>
       <th scope="col">Delete Note</th>
+      <th scope="col"> Modify Note </th>
     </tr>
   </thead>
 
@@ -36,21 +37,18 @@
       <td><%= currentNotes[i].title %></td>
       <td><%= currentNotes[i].content %></td>
       <td>
-      	<!--
-      	<button> 
-      		<a href="/notes/delete/<%= currentNotes[i]._id %> "> 
-      			Delete
-      		</a>
-      	</button>
-      -->
       <form method="POST" action="/notes/delete/<%= currentNotes[i]._id %>?_method=DELETE">
 
       	<input type="hidden" name="_method" value="DELETE"/>
       	<button type="submit">
-      			Delete resource
+      			Delete 
       	</button>
       </form>
-  </td>
+    </td>
+    <td>
+        <a href = "/modifyForm/<%= currentNotes[i]._id %>"> Modify </a> 
+      </form>
+    </td>
     </tr>
     <% } %>
 
